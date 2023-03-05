@@ -1,7 +1,6 @@
 <?php
-require("../../common/connect.php");
-require("../../model/user.php");
-
+require __DIR__ . '/../../common/connect.php';
+require __DIR__ . '/../../model/user.php';
 header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
@@ -16,14 +15,9 @@ $db = new Database();
 $db_conn = $db->connect();
 $user = new User($db_conn);
 
-$result = $user->login($data->nickname, $data->pw);
-
-if ($result != false) {
-    http_response_code(200);
-    echo json_encode(["response" => true, "userID" => $result]);
+if ($user->registration($data->nickname, $data->pw) == true) {
+    echo json_encode(["message" => "1"]);
 } else {
-    http_response_code(401);
-    echo json_encode(["response" => false]);
+    echo json_encode(["message" => "-1"]);
 }
-die();
 ?>

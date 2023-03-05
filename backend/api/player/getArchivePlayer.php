@@ -7,10 +7,10 @@ include_once dirname(__FILE__) . '/../../common/connect.php';
 include_once dirname(__FILE__) . '/../../model/player.php';
 include_once dirname(__FILE__) . '/../../model/base.php';
 
-$dtbase = new Database();
-$db_conn = $dtbase->connect();
+$db = new Database();
+$conn = $db->connect();
 
-$player = new Player($db_conn);
+$player = new Player($conn);
 $query = $player->getArchivePlayer();
 $result = $conn->query($query);
 
@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) > 0) {
     echo (json_encode($players_arr, JSON_PRETTY_PRINT));
 } else {
     http_response_code(400);
-    echo json_encode(["message" => "Non sono state trovate leghe"]);
+    echo json_encode(["message" => "Non sono stati trovati giocatori"]);
 }
 
 $conn->close();

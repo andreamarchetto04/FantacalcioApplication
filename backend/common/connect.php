@@ -5,7 +5,7 @@ class Database
     private $server_local = "localhost";
     private $user_local = "root";
     private $password_local = "";
-    private $db_local = "fantacalcioDB";
+    private $db_local = "fantacalcio";
 
     //common credentials
     private $port = "3306";
