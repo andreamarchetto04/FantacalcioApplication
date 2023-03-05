@@ -5,7 +5,7 @@ header("Content-type: application/json; charset=UTF-8");
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (empty($data->nickname) || empty($data->pw)) {
+if (empty($data->nickname) || empty($data->mail) || empty($data->pw)) {
     http_response_code(400);
     echo json_encode(["message" => "Fill every field"]);
     die();
@@ -15,7 +15,7 @@ $db = new Database();
 $db_conn = $db->connect();
 $user = new User($db_conn);
 
-if ($user->registration($data->nickname, $data->pw) == true) {
+if ($user->registration($data->nickname, $data->mail, $data->pw) == true) {
     echo json_encode(["message" => "1"]);
 } else {
     echo json_encode(["message" => "-1"]);

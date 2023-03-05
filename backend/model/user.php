@@ -8,9 +8,9 @@ set_error_handler("errorHandler::handleError");
 
 class User extends BaseController
 {
-    function login($nickname, $pw)
+    function login($nickname, $mail, $pw)
     {
-        $sql = sprintf("SELECT nickname, pw, id
+        $sql = sprintf("SELECT nickname, mail, pw, id
         FROM `user`
         where 1=1 ");
         $result = $this->conn->query($sql);
@@ -23,12 +23,13 @@ class User extends BaseController
         return false;
     }
 
-    function registration($nickname, $pw)
+    function registration($nickname, $mail, $pw)
     {
         $sql = sprintf(
-            "INSERT INTO user (nickname, pw, active)
-        VALUES ('%s', '%s', 1)",
+            "INSERT INTO user (nickname, mail, pw, active)
+        VALUES ('%s', '%s', '%s', 1)",
             $this->conn->real_escape_string($nickname),
+            $this->conn->real_escape_string($mail),
             $this->conn->real_escape_string($pw),
         );
 
