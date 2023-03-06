@@ -25,13 +25,7 @@ class User extends BaseController
 
     function registration($nickname, $mail, $pw)
     {
-        $sql = sprintf(
-            "INSERT INTO user (nickname, mail, pw, active)
-        VALUES ('%s', '%s', '%s', 1)",
-            $this->conn->real_escape_string($nickname),
-            $this->conn->real_escape_string($mail),
-            $this->conn->real_escape_string($pw),
-        );
+        $sql = "INSERT INTO user (nickname, mail, pw, active) VALUES ('$nickname', '$mail', '$pw',  1)";
 
         $result = $this->conn->query($sql);
         return $result;

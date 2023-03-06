@@ -16,7 +16,7 @@
 
 <body>
 
-    <form action="register.php" method="POST">
+    <form action="backend/api/user/registration.php" method="POST">
 
         <div class="row">
             <div class="col-7 mx-auto">
@@ -27,19 +27,43 @@
         <h2>
             Registrati
         </h2>
-
+        <label for="nickname">Nickname</label>
+        <input type="text" name="nickname" id="nickname" required>
         <label for="mail">Email</label>
         <input type="mail" name="mail" id="mail" required>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
+        <label for="pw">Password</label>
+        <input type="pw" name="pw" id="pw" required>
 
-        <label for="nickname">Nickname</label>
-        <input type="text" name="nickname" id="nickname" required>
+
 
         <input type="submit" value="invia">
 
     </form>
+
+    <?php
+    session_start();
+
+    include_once dirname(__FILE__) . '/../function/user.php';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!empty($_POST['nickname']) && !empty($_POST['mail']) && !empty($_POST['pw'])) { //se la variabile mail o password che devono essere inviate non sono vuote all'ora si invia
+    
+            $pw = hash("sha256", $_POST['pw']);
+
+            $data = array(
+                //Immetto i dati all'interno di data
+                "nickname" => $_POST['nickname'],
+                "mail" => $_POST['mail'],
+                "pw" => $pw,
+            );
+            $err = logon($data);
+            if (isset($err)) {
+                echo ('<p class="text-danger">Errore nella registrazione, riprova più tardi!</p>');
+            }
+        }
+    }
+    ?>
 
     <?php require_once(__DIR__ . '\footer.php'); ?>
 
