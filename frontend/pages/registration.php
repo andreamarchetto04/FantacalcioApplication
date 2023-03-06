@@ -15,7 +15,31 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\header.php'); ?>
+
+    <form action="register.php" method="POST">
+
+        <div class="row">
+            <div class="col-7 mx-auto">
+                <img class="mb-4" src="../assets/img/letter-f.png" alt="" width="40%" height="">
+            </div>
+        </div>
+
+        <h2>
+            Registrati
+        </h2>
+
+        <label for="mail">Email</label>
+        <input type="mail" name="mail" id="mail" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+
+        <label for="nickname">Nickname</label>
+        <input type="text" name="nickname" id="nickname" required>
+
+        <input type="submit" value="invia">
+
+    </form>
 
     <?php require_once(__DIR__ . '\footer.php'); ?>
 
@@ -23,5 +47,68 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
         </script>
 </body>
+
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-flex-align: center;
+        -ms-flex-pack: center;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="text"] {
+        margin-bottom: -1px;
+        /* border-bottom-right-radius: 0; */
+        /* border-bottom-left-radius: 0; */
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        /* border-bottom-right-radius: 0; */
+        /* border-bottom-left-radius: 0; */
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        /* border-top-left-radius: 0; */
+        /* border-top-right-radius: 0; */
+    }
+</style>
 
 </html>
