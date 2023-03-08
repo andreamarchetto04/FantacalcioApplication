@@ -28,7 +28,7 @@ function login($data)
 
     $response = json_decode($responseJson); //decodifico la response dal json
 
-    if ($response->response == true) //response == true vuol dire sessione senza errori
+    if ($response == true) //response == true vuol dire sessione senza errori
     {
         $_SESSION['user_id'] = $response->userID;
 

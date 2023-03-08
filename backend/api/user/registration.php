@@ -1,10 +1,9 @@
 <?php
 require __DIR__ . '/../../common/connect.php';
 require __DIR__ . '/../../model/user.php';
+
 header("Content-type: application/json; charset=UTF-8");
-$db = new Database();
-$conn = $db->connect();
-$user = new User($conn);
+
 $data = json_decode(file_get_contents("php://input"));
 
 if (empty($data->nickname) || empty($data->mail) || empty($data->pw)) {
@@ -13,6 +12,9 @@ if (empty($data->nickname) || empty($data->mail) || empty($data->pw)) {
     die();
 }
 
+$db = new Database();
+$conn = $db->connect();
+$user = new User($conn);
 
 
 if ($user->registration($data->nickname, $data->mail, $data->pw) == true) {

@@ -16,7 +16,7 @@
 
 <body>
 
-    <form action="backend/api/user/registration.php" method="POST">
+    <form action="" method="POST">
 
         <div class="row">
             <div class="col-7 mx-auto">
@@ -57,6 +57,7 @@
                 "mail" => $_POST['mail'],
                 "pw" => $pw,
             );
+
             $err = logon($data);
             if (isset($err)) {
                 echo ('<p class="text-danger">Errore nella registrazione, riprova più tardi!</p>');
