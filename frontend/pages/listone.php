@@ -22,18 +22,18 @@
 
             <div class="col-10">
                 <div class="row">
-                    <h1 class="title text-center" id="title_table">
+                    <h1 class="title text-center" id="title_table">Listone
                     </h1>
                 </div>
                 <div class="row">
                     <div>
-                        <table class="table table-dark table-striped">
+                        <table class="table table-striped ">
                             <thead>
                                 <tr>
-                                    <th scope="col">quotation</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">role</th>
-                                    <th scope="col">team</th>
+                                    <th scope="col">Quotazione</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Ruolo</th>
+                                    <th scope="col">Squadra</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -67,3 +67,30 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
         </script>
 </body>
+
+
+<style>
+    
+    body{
+        text-align: center;
+        
+    };
+
+
+    .row{
+
+        padding: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    table {
+        text-align: center;
+        table-layout : fixed;
+        padding: auto;
+        width : 300px;
+
+    }
+
+</style>
