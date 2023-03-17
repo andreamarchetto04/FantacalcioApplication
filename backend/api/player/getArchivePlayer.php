@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include_once dirname(__FILE__) . '/../../common/connect.php';
 include_once dirname(__FILE__) . '/../../model/player.php';
-include_once dirname(__FILE__) . '/../../model/base.php';
+
 
 $db = new Database();
 $conn = $db->connect();

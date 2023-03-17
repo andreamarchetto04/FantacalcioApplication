@@ -2,7 +2,7 @@
 
 function createSquad($data)
 {
-    $url = 'http://localhost/fantacalcio/backend/api/squad/createSquad.php';
+    $url = 'http://localhost/FantacalcioApplication/backend/api/squad/createSquad.php';
 
     $curl = curl_init($url); //inizializza una nuova sessione di cUrl
     //Curl contiene il return del curl_init 
@@ -38,7 +38,7 @@ function createSquad($data)
 
 function getSquadId($id)
 {
-    $url = 'http://localhost/fantacalcio/backend/api/squad/getSquadByUserId.php?id_user=' . $id;
+    $url = 'http://localhost/FantacalcioApplication/backend/api/squad/getSquadByUserId.php?id_user=' . $id;
 
     $json_data = file_get_contents($url);
     $decode_data = json_decode($json_data, $assoc = true);

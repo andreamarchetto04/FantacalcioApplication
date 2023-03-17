@@ -2,7 +2,7 @@
 
 function login($data)
 {
-    $url = 'http://localhost/fantacalcio/backend/api/user/login.php';
+    $url = 'http://localhost/FantacalcioApplication/backend/api/user/login.php';
 
     $curl = curl_init($url); //inizializza una nuova sessione di cUrl
     //Curl contiene il return del curl_init 
