@@ -16,57 +16,51 @@
 
 <body>
     <?php require_once(__DIR__ . '\header.php'); ?>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            <div class="col-10">
-                <div class="row">
-                    <h1 class="title text-center" id="title_table">Leghe
-                    </h1>
-                </div>
-                <div class="row">
-                    <div>
-                        <table class="table table-striped ">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">ID_Amministratore</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <?php
     include_once dirname(__FILE__) . '/../function/league.php';
 
-    $league_arr = getArchiveLeague();
+    $league_arr = getArchiveLeagueMoreDetails();
 
-    if (!empty($league_arr) && $league_arr != -1) {
-        foreach ($league_arr as $row) {
-            echo ('<tr>');
-            foreach ($row as $cell) {
-                echo ('<td>' . $cell . '</td>');
-            }
-        }
-        echo ('</tbody>');
-        echo ('</table>');
-    }
     ?>
+    <h3>Elenco leghe:</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2">
+        <?php foreach ($league_arr as $row): ?>
+            <div class="col">
+                <div class="card mb-3" style="max-width: 80%;">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <?php echo ($row['name']) ?>
+                                </h5>
+                                <p class="card-text"><small class="text-muted">
+                                        <?php echo ($row['id_trustee']) ?>
+                                    </small></p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-4">
+                            <!--<?php //if (empty($_SESSION['id_league'])): ?>-->
+                            <a href="joinLega.php?id_league=<?php echo ($row['id']) ?>&name=<?php echo ($row['name']) ?>">
+                                <button class="btn btn-outline-primary">Iscriviti</button>
+                            </a>
+                            <!--<?php //endif ?>-->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        <?php endforeach ?>
+    </div>
+    <a href="../pages/creaLega.php">
+        <button type="button" class="btn btn-outline">Crea lega
+        </button>
+    </a>
+
+
     <?php require_once(__DIR__ . '\footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
