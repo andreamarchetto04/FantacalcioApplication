@@ -8,7 +8,7 @@ if (empty($_SESSION['user_id'])) {
 
 <!doctype html>
 <html lang="en">
-
+    
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,8 @@ if (empty($_SESSION['user_id'])) {
     <link rel="icon" type="image/x-icon" href="../assets/img/letter-f.png">
 </head>
 
-<body style="background-color:	#f5f5dc">
-    <?php require_once(__DIR__ . '\header.php');
+<body style="background-color-light">
+    <?php require_once(__DIR__ . '\navbar.php');
     include_once dirname(__FILE__) . '/../function/league.php';
     $squad = getSquadJoinLeague($_GET['id_league']);
     ?>

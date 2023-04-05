@@ -15,19 +15,13 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\header.php'); ?>
+    <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-10">
-                <div class="row">
-                    <h1 class="title text-center" id="title_table">Listone
+                    <h1 class="title text-center mb-3" id="title_table">Listone
                     </h1>
-                </div>
-                <div class="row">
-                    <div>
-                        <table class="table table-striped ">
+                    <div class=" mx-5 d-flex justify-content-center">
+                        <table class="table table-striped" >
                             <thead>
                                 <tr>
                                     <th scope="col">Quotazione</th>
@@ -38,14 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <?php
+                            <?php
     include_once dirname(__FILE__) . '/../function/player.php';
 
     $player_arr = getArchivePlayer();
@@ -61,6 +48,11 @@
         echo ('</table>');
     }
     ?>
+
+</div>
+    </div>
+
+
     <?php require_once(__DIR__ . '\footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -68,29 +60,27 @@
         </script>
 </body>
 
-
 <style>
-    
-    body{
-        text-align: center;
-        
-    };
 
+body, html {
+  height: 100%;
+}
 
-    .row{
+.bg {
+  /* The image used */
+  background-image: url("../assets/img/campocalcio.jpg");
 
-        padding: auto;
-        margin-left: auto;
-        margin-right: auto;
+  /* Full height */
+  height: 95%;
 
-    }
-
-    table {
-        text-align: center;
-        table-layout : fixed;
-        padding: auto;
-        width : 300px;
-
-    }
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 </style>
+
+
+
+

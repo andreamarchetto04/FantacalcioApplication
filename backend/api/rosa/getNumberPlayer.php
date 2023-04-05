@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 include_once dirname(__FILE__) . '/../../common/connect.php';
 include_once dirname(__FILE__) . '/../../model/rosa.php';
-include_once dirname(__FILE__) . '/../../model/base.php';
+
 
 if (!isset($_GET['id_squad']) || ($id_squad = explode("?id_squad=", $_SERVER['REQUEST_URI'])[1]) == null) {
     http_response_code(400);
@@ -16,9 +16,9 @@ if (!isset($_GET['id_squad']) || ($id_squad = explode("?id_squad=", $_SERVER['RE
 //$user = explode("?user=" , $_SERVER['REQUEST_URI'])[1];
 
 $dtbase = new Database();
-$db_conn = $dtbase->connect();
+$conn = $dtbase->connect();
 
-$rosa = new Rosa($db_conn);
+$rosa = new Rosa($conn);
 $query = $rosa->getNumberPlayer($id_squad);
 $result = $conn->query($query);
 

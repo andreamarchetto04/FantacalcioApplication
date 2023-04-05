@@ -21,10 +21,10 @@ if (empty($_SESSION['user_id'])) {
 </head>
 
 
-<body style="background-color:	#f5f5dc">
 
-    <?php require_once(__DIR__ . '\header.php'); ?>
-
+<body style="background-color-light">
+    <?php require_once(__DIR__ . '\navbar.php'); ?>
+    
     <div class="mx-auto" style="width: 50%; padding: 30px 0px">
         <h2>Crea la tua lega!</h2>
         <form method="post" style="margin-top: 20px;">
@@ -38,12 +38,12 @@ if (empty($_SESSION['user_id'])) {
                 <input type="text" class="form-control" placeholder="Nome della tua squadra" name="name_squad" required>
             </div>
             <div class="mb-3">
-                <?php if (empty($_SESSION['id_league']) && empty($_SESSION['id_squad'])): ?>
+               <?php if (empty($_SESSION['id_league']) && empty($_SESSION['id_squad'])): ?> 
                     <button class="btn btn-primary" type="submit">Invia</button>
                 <?php endif ?>
                 <?php if (!empty($_SESSION['id_league']) || !empty($_SESSION['id_squad'])): ?>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Invia
                     </button>
 
@@ -101,14 +101,14 @@ if (empty($_SESSION['user_id'])) {
                 echo ('<p class="text-danger">Errore nella creazione della squadra</p>');
             }
 
-            /*if ($res_league != "1") {
+            if ($res_league != "1") {
                 echo ('<p class="text-danger">Errore nella creazione della lega</p>');
-            }*/
+            }
 
             if ($res_squad == "1" && $res_league == "1") {
                 $id_league = getLeagueByTrusteeId($_SESSION['user_id']);
                 $id_squad = getSquadId($_SESSION['user_id']);
-                if ($id_squad != "1" && $id_league == "-1") {
+                if ($id_squad!= "1" && $id_league == "-1") {
                     echo ('<p class="text-danger">Errore nella creazione della squadra</p>');
                 } else {
                     $_SESSION['id_league'] = $id_league;
@@ -117,7 +117,7 @@ if (empty($_SESSION['user_id'])) {
                         'id_squad' => $_SESSION['id_squad'],
                         'id_league' => $_SESSION['id_league'],
                     );
-
+                    
                     if (joinLeague($data_join) == 1) {
                         header('location: homepage.php');
                     } else {

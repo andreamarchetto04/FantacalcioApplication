@@ -24,9 +24,7 @@ function createLeague($data)
     $responseJson = curl_exec($curl); //eseguo
 
     curl_close($curl); //chiudo sessione
-
     $response = json_decode($responseJson); //decodifico la response dal json
-
     if ($response->message == true) //response == true vuol dire sessione senza errori
     {
         return 1;
@@ -89,7 +87,6 @@ function joinLeague($data)
     curl_close($curl); //chiudo sessione
 
     $response = json_decode($responseJson); //decodifico la response dal json
-
     if ($response->message == true) //response == true vuol dire sessione senza errori
     {
         return 1;
@@ -108,7 +105,7 @@ function getArchiveLeague()
     if ($json_data != false) {
         $decode_data = json_decode($json_data, $assoc = true);
         $league_data = $decode_data;
-        $league_arr = array();
+        $leagues_arr = array();
         if (!empty($league_data)) {
             foreach ($league_data as $league) {
                 $league_record = array(
@@ -116,9 +113,9 @@ function getArchiveLeague()
                     'name' => $league['name'],
                     'id_trustee' => $league['id_trustee'],
                 );
-                array_push($league_arr, $league_record);
+                array_push($leagues_arr, $league_record);
             }
-            return $league_arr;
+            return $leagues_arr;
         } else {
             return -1;
         }
@@ -253,6 +250,5 @@ function getSquadJoinLeague($id_league)
         return -1;
     }
 }
-
 
 ?>

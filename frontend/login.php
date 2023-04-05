@@ -8,22 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="icon" type="image/x-icon" href="assets/img/letter-f.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/logo1.png">
 </head>
 
-<body>
+<body class="bg">
     <form class="form-signin" method="post">
         <div class="row">
             <div class="col-7 mx-auto">
-                <img class="mb-4" src="assets/img/letter-f.png" alt="" width="100%" height="">
+                <img class="mb-4" src="assets/img/logo1.png" alt="" width="100%" height="">
             </div>
         </div>
         <h1 class="h3 mb-3 fw-bold">Inserisci le credenziali</h1>
-        <label for="inputNickname" class="sr-only mb-2">Nickname</label>
-        <input type="text" id="inputNickname" class="form-control mb-4" placeholder="nickname" name="nickname" required
+        <label for="inputEmail" class="sr-only mb-2">Nickname</label>
+        <input type="text" id="inputEmail" class="form-control mb-4" placeholder="nickname" name="nickname" required
             autofocus>
-        <label for="inputMail" class="sr-only mb-2">Mail</label>
-        <input type="email" id="inputMail" class="form-control mb-4" placeholder="mail" name="mail" required>
         <label for="inputPassword" class="sr-only mb-2">Password</label>
         <input type="password" id="inputPassword" class="form-control mb-4" placeholder="Password" name="password"
             required>
@@ -36,14 +34,13 @@
         include_once dirname(__FILE__) . '\function\league.php';
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (!empty($_POST['nickname']) && !empty($_POST['mail']) && !empty($_POST['password'])) { //se la variabile mail o password che devono essere inviate non sono vuote all'ora si invia
+            if (!empty($_POST['nickname']) && !empty($_POST['password'])) { //se la variabile mail o password che devono essere inviate non sono vuote all'ora si invia
         
                 $pw = hash("sha256", $_POST['password']);
 
                 $data = array(
                     //Immetto i dati all'interno di data
                     "nickname" => $_POST['nickname'],
-                    "mail" => $_POST['mail'],
                     "pw" => $pw,
                 );
 
@@ -79,7 +76,7 @@
             <button class="btn btn-lg btn-primary btn-block mx-auto" type="submit">Accedi</button>
             <div class="row">
                 <a class="text-dark" href="pages/registration.php" style="text-decoration: none; font-size:13px;">
-                    <u>Non hai ancora un account, registrati ora!</u>
+                    <u>Se non hai ancora un account, registrati ora!</u>
                 </a>
             </div>
         </div>
@@ -93,10 +90,7 @@
 </html>
 
 <style>
-    html,
-    body {
-        height: 100%;
-    }
+    
 
     body {
         display: -ms-flexbox;
@@ -136,12 +130,6 @@
         z-index: 2;
     }
 
-    .form-signin input[type="text"] {
-        margin-bottom: -1px;
-        /* border-bottom-right-radius: 0; */
-        /* border-bottom-left-radius: 0; */
-    }
-
     .form-signin input[type="email"] {
         margin-bottom: -1px;
         /* border-bottom-right-radius: 0; */
@@ -153,4 +141,22 @@
         /* border-top-left-radius: 0; */
         /* border-top-right-radius: 0; */
     }
+
+    body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../assets/img/campocalcio.jpg");
+
+  /* Full height */
+  height: 95%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
+</html>

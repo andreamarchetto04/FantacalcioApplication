@@ -7,6 +7,7 @@ include_once dirname(__FILE__) . '/../../common/connect.php';
 include_once dirname(__FILE__) . '/../../model/squad.php';
 
 
+
 $data = json_decode(file_get_contents("php://input"));
 
 if (empty($data->name) || empty($data->id_user)) {

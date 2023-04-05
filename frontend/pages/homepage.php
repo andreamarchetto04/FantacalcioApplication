@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('location: ../login.php');
+}
+
 ?>
 
 <!doctype html>
@@ -15,11 +21,33 @@
 </head>
 
 <body>
-    <?php require_once(__DIR__ . '\header.php'); ?>
 
-    <?php require_once(__DIR__ . '\footer.php'); ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-        </script>
+<?php require_once(__DIR__ . '\navbar.php'); ?>
+
+<div class="bg"></div>
+
 </body>
+
+<style>
+
+body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../assets/img/campocalcio.jpg");
+
+  /* Full height */
+  height: 95%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+</style>
+
+</html>

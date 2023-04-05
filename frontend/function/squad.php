@@ -42,8 +42,9 @@ function getSquadId($id)
 
     $json_data = file_get_contents($url);
     $decode_data = json_decode($json_data, $assoc = true);
-    if ($decode_data['message'] == "-2") {
-        return -2;
+   
+    if ($decode_data == "-2") {
+        return -2;  
     } else {
         if ($json_data != false) {
             $squad_data = $decode_data;
@@ -67,4 +68,56 @@ function getSquadId($id)
     }
 }
 
+function getSquadById($id)
+{
+    $url = 'http://localhost/FantacalcioApplication/backend/api/squad/getSquadById.php?id_squad=' . $id;
+
+    $json_data = file_get_contents($url);
+    $decode_data = json_decode($json_data, $assoc = true);
+
+    if ($json_data != false) {
+        $squad_data = $decode_data;
+        $squads_arr = array();
+        if (!empty($squad_data)) {
+            foreach ($squad_data as $squad) {
+                $squad_record = array(
+                    'name' => $squad['name'],
+                );
+                array_push($squads_arr, $squad_record);
+            }
+
+            return $squads_arr[0]['name'];
+        } else {
+            return -1;
+        }
+
+    } else {
+        return -1;
+    }
+}
+
+function getPlayerOfSquad($id_squad)
+{
+    $url = 'http://localhost/FantacalcioApplication/backend/api/squad/getPlayerOfSquad.php?id_squad=' . $id_squad;
+
+    $json_data = file_get_contents($url);
+    $decode_data = json_decode($json_data, $assoc = true);
+
+    $player_data = $decode_data;
+    $players_arr = array();
+    if (!empty($player_data)) {
+        foreach ($player_data as $player) {
+            $player_record = array(
+                'id' => $player['id'],
+                'surname' => $player['surname'],
+                'role' => $player['role'],
+            );
+            array_push($players_arr, $player_record);
+        }
+
+        return $players_arr;
+    } else {
+        return -1;
+    }
+}
 ?>

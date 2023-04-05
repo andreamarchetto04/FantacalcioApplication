@@ -3,7 +3,6 @@ create database fantacalcio;
 create table fantacalcio.`user`(
 id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 nickname            VARCHAR(64)  NOT null,
-mail				varchar(100) not null,
 pw 					VARCHAR(256) not null,
 active				BOOLEAN  NOT NULL DEFAULT (TRUE) 
 );
@@ -48,10 +47,8 @@ avariable			varchar(2) not null
 create table fantacalcio.`match`(
 id 					INT UNSIGNED NOT NULL   AUTO_INCREMENT  PRIMARY KEY,
 number_match 		int not null,
-id_squad1			INT UNSIGNED NOT null,
-id_squad2			INT UNSIGNED NOT null,
-score1				INT not null,
-score2				INT not null,
+id_squad			INT UNSIGNED not null,
+score				INT not null,
 id_league			INT UNSIGNED NOT null
 );
 
@@ -65,11 +62,10 @@ ALTER TABLE fantacalcio.rosa ADD CONSTRAINT fk_player_rosa FOREIGN KEY ( id_play
 
 ALTER TABLE fantacalcio.rosa ADD CONSTRAINT fk_league_rosa FOREIGN KEY ( id_league ) REFERENCES fantacalcio.league ( id );
 
-ALTER TABLE fantacalcio.`match` ADD CONSTRAINT fk_match_squad1 FOREIGN KEY ( id_squad1 ) REFERENCES fantacalcio.squad ( id );
+ALTER TABLE fantacalcio.`match` ADD CONSTRAINT fk_match_squad FOREIGN KEY ( id_squad ) REFERENCES fantacalcio.squad ( id );
 
-ALTER TABLE fantacalcio.`match` ADD CONSTRAINT fk_match_squad2 FOREIGN KEY ( id_squad2 ) REFERENCES fantacalcio.squad ( id );
+ALTER TABLE fantacalcio.`match` ADD CONSTRAINT fk_match_league FOREIGN KEY ( id_league ) REFERENCES fantacalcio.league ( id );
 
 ALTER TABLE fantacalcio.squad_league ADD CONSTRAINT fk_squad_squad FOREIGN KEY ( id_squad ) REFERENCES fantacalcio.squad ( id );
 
 ALTER TABLE fantacalcio.squad_league ADD CONSTRAINT fk_league_league FOREIGN KEY ( id_league ) REFERENCES fantacalcio.league ( id );
-

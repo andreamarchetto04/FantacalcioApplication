@@ -6,10 +6,12 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once dirname(__FILE__) . '/../../common/connect.php';
 include_once dirname(__FILE__) . '/../../model/squad.php';
 
-$dtbase = new Database();
-$conn = $dtbase->connect();
 
-$squad = new Squad($conn);
+
+$dtbase = new Database();
+$db_conn = $dtbase->connect();
+
+$squad = new Squad($db_conn);
 $query = $squad->getArchiveSquad();
 $result = $conn->query($query);
 
@@ -20,7 +22,7 @@ if (mysqli_num_rows($result) > 0) {
         $squad_arr = array(
             'id' => $id,
             'name' => $name,
-            'nickname' => $nickname,
+            'nickname' => $id_trustee,
             'score' => $score,
         );
         array_push($squads_arr, $squad_arr);

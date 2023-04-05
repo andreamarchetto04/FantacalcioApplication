@@ -1,6 +1,3 @@
-<?php
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -14,64 +11,55 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/letter-f.png">
 </head>
 
-<body>
 
-    <form action="" method="POST">
-
+<body class="bg">
+    <form class="form-signin" method="post">
         <div class="row">
             <div class="col-7 mx-auto">
-                <img class="mb-4" src="../assets/img/letter-f.png" alt="" width="40%" height="">
+                <img class="mb-4" src="../assets/img/logo1.png" alt="" width="100%" height="">
             </div>
         </div>
+        <h1 class="h3 mb-3 fw-bold">Inserisci le credenziali</h1>
+        <label for="inputName" class="sr-only mb-2">Nickname</label>
+        <input type="text" id="inputName" class="form-control mb-4" placeholder="nickname" name="nickname" required>
+        <label for="inputPassword" class="sr-only mb-2">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-4" placeholder="Password" name="password"
+            required>
 
-        <h2>
-            Registrati
-        </h2>
-        <label for="nickname">Nickname</label>
-        <input type="text" name="nickname" id="nickname" required>
-        <label for="mail">Email</label>
-        <input type="mail" name="mail" id="mail" required>
+        <?php
+        session_start();
 
-        <label for="pw">Password</label>
-        <input type="pw" name="pw" id="pw" required>
+        include_once dirname(__FILE__) . '/../function/user.php';
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!empty($_POST['nickname']) && !empty($_POST['password'])) { //se la variabile mail o password che devono essere inviate non sono vuote all'ora si invia
+        
+                $pw = hash("sha256", $_POST['password']);
 
+                $data = array(
+                    //Immetto i dati all'interno di data
+                    "nickname" => $_POST['nickname'],
+                    "pw" => $pw,
+                );
 
-        <input type="submit" value="invia">
-
-    </form>
-
-    <?php
-    session_start();
-
-    include_once dirname(__FILE__) . '/../function/user.php';
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (!empty($_POST['nickname']) && !empty($_POST['mail']) && !empty($_POST['pw'])) { //se la variabile mail o password che devono essere inviate non sono vuote all'ora si invia
-    
-            $pw = hash("sha256", $_POST['pw']);
-
-            $data = array(
-                //Immetto i dati all'interno di data
-                "nickname" => $_POST['nickname'],
-                "mail" => $_POST['mail'],
-                "pw" => $pw,
-            );
-
-            $err = logon($data);
-            if (isset($err)) {
-                echo ('<p class="text-danger">Errore nella registrazione, riprova più tardi!</p>');
+                $err = logon($data);
+                if ($err == "-1") {
+                    echo ('<p class="text-danger">Errore nella registrazione, riprova più tardi!</p>');
+                }
             }
         }
-    }
-    ?>
-
-    <?php require_once(__DIR__ . '\footer.php'); ?>
+        ?>
+        <div class="row">
+            <button class="btn btn-lg btn-primary btn-block mx-auto" type="submit">Registrati</button>
+        </div>
+    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-        </script>
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
+
+</html>
 
 <style>
     html,
@@ -117,12 +105,6 @@
         z-index: 2;
     }
 
-    .form-signin input[type="text"] {
-        margin-bottom: -1px;
-        /* border-bottom-right-radius: 0; */
-        /* border-bottom-left-radius: 0; */
-    }
-
     .form-signin input[type="email"] {
         margin-bottom: -1px;
         /* border-bottom-right-radius: 0; */
@@ -134,6 +116,21 @@
         /* border-top-left-radius: 0; */
         /* border-top-right-radius: 0; */
     }
-</style>
 
-</html>
+    body, html {
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../assets/img/campocalcio.jpg");
+
+  /* Full height */
+  height: 95%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>

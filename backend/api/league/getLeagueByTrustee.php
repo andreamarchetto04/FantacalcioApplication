@@ -13,7 +13,7 @@ if (!isset($_GET['id_trustee']) || ($id_trustee = explode("?id_trustee=", $_SERV
     die();
 }
 
-$user = explode("?user=" , $_SERVER['REQUEST_URI'])[1];
+//$user = explode("?user=" , $_SERVER['REQUEST_URI'])[1];
 
 $dtbase = new Database();
 $conn = $dtbase->connect();
